@@ -1,0 +1,42 @@
+{
+  "name": "mystore-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "start.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "*",
+    "cookie-parser": "*",
+    "dotenv": "*",
+    "es6-promisify": "*",
+    "express": "*",
+    "express-session": "*",
+    "express-validator": "*",
+    "jimp": "*",
+    "md5": "*",
+    "moment": "*",
+    "mongoose": "*",
+    "mongoose-mongodb-errors": "*",
+    "multer": "*",
+    "nodemailer": "*",
+    "passport": "*",
+    "passport-local": "*",
+    "passport-local-mongoose": "*",
+    "slugs": "*",
+    "uuid": "*",
+    "validator": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikkybang/mystore-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mikkybang/mystore-api/issues"
+  },
+  "homepage": "https://github.com/mikkybang/mystore-api#readme"
+}

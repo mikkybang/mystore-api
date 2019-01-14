@@ -7,5 +7,20 @@ router.get("/", (req, res) => {
     res.send("it works")
 });
 
+router.post('/add',
+    catchErrors(storeController.createStore)
+);
+
+router.get('/:slug',
+ catchErrors(storeController.getStoreBySlug)
+
+);
+
+router.get('/:slug/edit', 
+catchErrors(storeController.getStoreBySlug)
+
+)
+
+
 
 module.exports = router;

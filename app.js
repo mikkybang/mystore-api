@@ -65,8 +65,9 @@ app.use(passport.session());
 
 // After allllll that above middleware, we finally handle our own routes!
 // app.use('/', routes);
+app.use('/', storeRoutes);
 app.use('/user', userRoutes);
-app.use('/store', storeRoutes);
+
 
 // If that above routes didnt work, we 404 them and forward to error handler
 app.use(errorHandlers.notFound);

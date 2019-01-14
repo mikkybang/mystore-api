@@ -5,10 +5,12 @@
   "description": "",
   "main": "start.js",
   "scripts": {
+    "start": "nodemon ./start.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "body-parser": "*",
+    "connect-mongo": "^2.0.3",
     "cookie-parser": "*",
     "dotenv": "*",
     "es6-promisify": "*",

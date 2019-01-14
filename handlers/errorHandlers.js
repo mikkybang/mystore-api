@@ -35,13 +35,13 @@ exports.notFound = (req, res, next) => {
   Detect if there are mongodb validation errors that we can nicely show via flash messages
 */
 
-exports.flashValidationErrors = (err, req, res, next) => {
-  if (!err.errors) return next(err);
-  // validation errors look like
-  const errorKeys = Object.keys(err.errors);
-  errorKeys.forEach(key => req.flash('error', err.errors[key].message));
-  res.redirect('back');
-};
+// exports.flashValidationErrors = (err, req, res, next) => {
+//   if (!err.errors) return next(err);
+//   // validation errors look like
+//   const errorKeys = Object.keys(err.errors);
+//   errorKeys.forEach(key => req.flash('error', err.errors[key].message));
+//   res.redirect('back');
+// };
 
 
 /*
@@ -58,10 +58,6 @@ exports.developmentErrors = (err, req, res, next) => {
   };
   res.status(err.status || 500);
   res.format({
-    // Based on the `Accept` http header
-    'text/html': () => {
-      res.render('error', errorDetails);
-    }, // Form Submit, Reload the page
     'application/json': () => res.json(errorDetails) // Ajax call, send JSON back
   });
 };
@@ -73,8 +69,7 @@ exports.developmentErrors = (err, req, res, next) => {
   No stacktraces are leaked to user
 */
 exports.productionErrors = (err, req, res, next) => {
-  res.status(err.status || 500);
-  res.render('error', {
+  res.status(err.status || 500).send({
     message: err.message,
     error: {}
   });

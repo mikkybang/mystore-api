@@ -2,19 +2,20 @@
     Modules to be installed
 
 */
-// const express = require('express');
-// const session = require('express-session');
-// const mongoose = require('mongoose');
-// const MongoStore = require('connect-mongo')(session);
-// const path = require('path');
-// const cookieParser = require('cookie-parser');
-// const bodyParser = require('body-parser');
-// const passport = require('passport');
-// const promisify = require('es6-promisify');
-// const flash = require('connect-flash');
-// const expressValidator = require('express-validator');
-// const routes = require('./routes/index');
-// const errorHandlers = require('./handlers/errorHandlers');
+const express = require('express');
+const session = require('express-session');
+const mongoose = require('mongoose');
+const MongoStore = require('connect-mongo')(session);
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const passport = require('passport');
+const promisify = require('es6-promisify');
+//const flash = require('connect-flash');
+const expressValidator = require('express-validator');
+const userRoutes = require('./routes/userRoute');
+const storeRoutes = require('./routes/storeRoute');
+const errorHandlers = require('./handlers/errorHandlers');
 
 // create our Express app
 const app = express();
@@ -45,7 +46,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // // The flash middleware let's us use req.flash('error', 'Shit!'), which will then pass that message to the next page the user requests
-app.use(flash());
+// app.use(flash());
 
 // pass variables to our templates + all requests
 // app.use((req, res, next) => {
@@ -56,20 +57,22 @@ app.use(flash());
 //   next();
 // });
 
-// promisify some callback based APIs
-app.use((req, res, next) => {
-  req.login = promisify(req.login, req);
-  next();
-});
+// // promisify some callback based APIs
+// app.use((req, res, next) => {
+//   req.login = promisify(req.login, req);
+//   next();
+// });
 
 // After allllll that above middleware, we finally handle our own routes!
-app.use('/', routes);
+// app.use('/', routes);
+app.use('/user', userRoutes);
+app.use('/store', storeRoutes);
 
 // If that above routes didnt work, we 404 them and forward to error handler
 app.use(errorHandlers.notFound);
 
 // One of our error handlers will see if these errors are just validation errors
-app.use(errorHandlers.flashValidationErrors);
+//app.use(errorHandlers.flashValidationErrors);
 
 // Otherwise this was a really bad error we didn't expect! Shoot eh
 if (app.get('env') === 'development') {

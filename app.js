@@ -17,6 +17,9 @@ const userRoutes = require('./routes/userRoute');
 const storeRoutes = require('./routes/storeRoute');
 const errorHandlers = require('./handlers/errorHandlers');
 
+//require passport
+require('./handlers/passport');
+
 // create our Express app
 const app = express();
 

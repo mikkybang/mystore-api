@@ -1,7 +1,7 @@
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
  //setting up schema
 
- let BuyerSchema = mongoose.Schema({
+ const BuyerSchema = mongoose.Schema({
      itemName: {
          type: String,
          required: true
@@ -15,7 +15,7 @@ let mongoose = require('mongoose');
 
  // Export Buyer Model
 
- let Buyer = module.exports = mongoose.model('buyer', BuyerSchema);
+ module.exports = mongoose.model('buyer', BuyerSchema);
 
  module.exports.get = (callback, limit) => {
      Buyer.find(callback).limit(limit);

@@ -1,9 +1,9 @@
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 // setting up schema
 
 
-let SellerSchema = mongoose.Schema({
+const SellerSchema = mongoose.Schema({
     itemName: {
         type : String,
         required: true
@@ -22,7 +22,7 @@ let SellerSchema = mongoose.Schema({
 
 // export Seller Model
 
-let Seller = module.exports = mongoose.model('seller', SellerSchema);
+module.exports = mongoose.model('seller', SellerSchema);
 
 module.exports.get = (callback, limit) => {
     Seller.find(callback).limit(limit);

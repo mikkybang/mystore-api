@@ -21,10 +21,9 @@ exports.index = (req, res) =>{
 // Handle create contact actions
 exports.new = (req, res) => {
     var buyer = new Buyer();
-    buyer.name = req.body.name ? req.body.name : buyer.name;
-    buyer.gender = req.body.gender;
-    buyer.email = req.body.email;
-    buyer.phone = req.body.phone;
+    buyer.itemName = req.body.itemName ? req.body.itemName : buyer.itemName;
+    buyer.itemPrice = req.body.itemPrice;
+   
 // save the buyer and check for errors
     buyer.save((err) => {
         // if (err)
@@ -51,10 +50,10 @@ exports.update =  (req, res) => {
 buyer.findById(req.params.buyer_id,  (err, buyer) => {
         if (err)
             res.send(err);
-buyer.name = req.body.name ? req.body.name : buyer.name;
-        buyer.gender = req.body.gender;
-        buyer.email = req.body.email;
-        buyer.phone = req.body.phone;
+        buyer.itemName = req.body.itemName ? req.body.itemName : buyer.itemName;
+        buyer.itemPrice = req.body.itemPrice;
+        
+        
 // save the buyer and check for errors
         buyer.save(function (err) {
             if (err)

@@ -2,11 +2,11 @@ let mongoose = require('mongoose');
  //setting up schema
 
  let BuyerSchema = mongoose.Schema({
-     item: {
+     itemName: {
          type: String,
          required: true
      },
-     price : {
+     itemPrice : {
          type: String,
          required: true
      }

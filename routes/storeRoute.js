@@ -12,15 +12,16 @@ router.post('/add',
 );
 
 router.get('/:slug',
- catchErrors(storeController.getStoreBySlug)
-
+    catchErrors(storeController.getStoreBySlug)
 );
 
-router.get('/:slug/edit', 
-catchErrors(storeController.getStoreBySlug)
+router.get('/:slug/edit',
+    catchErrors(storeController.editStore)
+);
 
-)
-
+router.post('/:slug/edit',
+    catchErrors(storeController.updateStore)
+);
 
 
 module.exports = router;

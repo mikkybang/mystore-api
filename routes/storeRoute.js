@@ -3,6 +3,7 @@ const router = express.Router();
 const storeController = require('../controllers/storeController');
 const { catchErrors } = require('../handlers/errorHandlers');
 const buyerController = require('../controllers/buyerController');
+const sellerController = require('../controllers/sellerController');
 
 router.get("/", (req, res) => {
     res.json({
@@ -32,11 +33,26 @@ router.route('/buyers')
     .post(buyerController.new);
 
 
-router.route('/buyers/:contact_id')
+router.route('/buyers/:buyer_id')
     .get(buyerController.view)
     .patch(buyerController.update)
     .put(buyerController.update)
     .delete(buyerController.delete);
+
+
+
+//seller
+
+router.route('/sellers')
+    .get(sellerController.index)
+    .post(sellerController.new);
+
+
+router.route('/sellers/:seller_id')
+    .get(sellerController.view)
+    .patch(sellerController.update)
+    .put(sellerController.update)
+    .delete(sellerController.delete);
 
 
 

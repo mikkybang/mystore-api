@@ -6,6 +6,8 @@
   "main": "start.js",
   "scripts": {
     "start": "nodemon ./start.js",
+    "sample": "node ./data/load-sample.js",
+    "deletesample": "node ./data/load-sample.js --delete",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

@@ -4,9 +4,9 @@ const userController = require('../controllers/userController');
 const authController = require('../controllers/authController');
 const { catchErrors } = require('../handlers/errorHandlers');
 
-router.get("/index", (req, res) => {
-     res.json({hello: 'hello there'});
-});
+router.get("/all", catchErrors(userController.getusers)
+);
+
 router.get("/test", (req, res) => {
     res.send("it works test")
 });

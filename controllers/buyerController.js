@@ -1,4 +1,4 @@
-Buyer = require('../models/Buyer');
+const Buyer = require('../models/Buyer');
 
 // Handling index actions
 

@@ -2,6 +2,14 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const promisify = require('es6-promisify');
 
+
+exports.getusers = async (req, res) =>{
+    const users = await User.find()
+     res.json(users);
+}
+
+
+
 exports.validateRegister = (req, res, next) => {
     req.sanitizeBody('name');
     req.checkBody('name', 'You must supply a name!').notEmpty();

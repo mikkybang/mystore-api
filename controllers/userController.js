@@ -1,13 +1,18 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
-const promisify = require('es6-promisify');
+const Seller = mongoose.model('Seller');
+const Buyer = mongoose.model('Buyer');
 
 
-exports.getusers = async (req, res) =>{
-    const users = await User.find()
-     res.json(users);
+exports.getusers = async (req, res) => {
+    const user = await User.find()
+     res.json(user);
 }
 
+exports.getusers = async (req, res) => {
+    const user = await User.find()
+     res.json(user);
+}
 
 
 exports.validateRegister = (req, res, next) => {
@@ -32,13 +37,28 @@ exports.validateRegister = (req, res, next) => {
 };
 
 exports.register = async (req, res, next) => {
-    const user = new User({ email: req.body.email, name: req.body.name });
-    const register = promisify(User.register, User);
-    const newUser = await register(user, req.body.password);
-    res.json(newUser);
+    const user = new User({email: req.body.email, name: req.body.name, type: req.body.type });
+    await User.register(user, req.body.password).then(
+       async (user) =>{
+        if (req.body.type == 'Buyer') {
+            const buyer =  await new Buyer({user: user._id, email: user.email, name: user.name})  
+            buyer.save();
+            res.json(buyer);
+          }
+          else {
+              const seller = await new Seller({user: user._id, email: user.email, name: user.name})
+              seller.save();
+              res.json(seller);
+          }
+
+       }
+    )
+    
+    
 }
 
 exports.login = (req, res, next) => {
+    console.log(req.user)
     res.status(200).json(req.user);
     return next();
 }

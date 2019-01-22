@@ -15,7 +15,9 @@ router.post('/register',
 userController.validateRegister,
 catchErrors(userController.register)
 );
-router.post('/login', authController.login)
+router.post('/login',
+ authController.login,
+  userController.login)
 
 
 module.exports = router;

@@ -1,16 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const storeController = require('../controllers/storeController');
-const { catchErrors } = require('../handlers/errorHandlers');
 const buyerController = require('../controllers/buyerController');
 const sellerController = require('../controllers/sellerController');
+const { catchErrors } = require('../handlers/errorHandlers');
 
-router.get("/", (req, res) => {
-    res.json({
-        status : 'Api it;s working',
-        message: 'Welcome to Store to Store api Services'
-    });
-});
+
+router.get('/you', buyerController.view)
 
 router.post('/add',
     catchErrors(storeController.createStore)
@@ -26,7 +22,18 @@ router.get('/:slug/edit',
 
 router.post('/:slug/edit',
     catchErrors(storeController.updateStore)
-    );
+);
+
+
+
+// router.get("/", (req, res) => {
+//     res.json({
+//         status: 'Api it;s working',
+//         message: 'Welcome to Store to Store api Services'
+//     });
+// });
+
+
 
 //Buyer routes
 
@@ -35,8 +42,8 @@ router.route('/buyers')
     .post(buyerController.new);
 
 
-router.route('/buyers/:buyer_id')
-    .get(buyerController.view)
+router.route('/buyers/:email')
+    .get(buyerController.getbuyerbyEmail)
     .patch(buyerController.update)
     .put(buyerController.update)
     .delete(buyerController.delete);
@@ -55,6 +62,7 @@ router.route('/sellers/:seller_id')
     .patch(sellerController.update)
     .put(sellerController.update)
     .delete(sellerController.delete);
+
 
 
 

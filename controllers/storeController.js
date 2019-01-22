@@ -14,7 +14,7 @@ exports.createStore = async (req, res) => {
 
 
 exports.editStore = async (req, res) => {
-    // find the store given the id
+    // find the store given the slug
     const store = await Store.findOne({ slug: req.params.slug })
      res.json(store);
 }

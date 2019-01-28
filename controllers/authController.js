@@ -14,6 +14,7 @@ exports.register = async (req, res, next) => {
             if (req.body.type == 'Buyer') {
                 const buyer = await new Buyer({ user: user._id, email: user.email, name: user.name })
                 buyer.save();
+                console.log(user)
                 passport.authenticate(
                     'local', {
                         session: false
@@ -24,6 +25,7 @@ exports.register = async (req, res, next) => {
             else {
                 const seller = await new Seller({ user: user._id, email: user.email, name: user.name })
                 seller.save();
+                console.log(user)
                 passport.authenticate(
                     'local', {
                         session: false
@@ -55,8 +57,10 @@ exports.login = async (req, res, next) => {
                     res.send(err);
                 }
                 // generate a signed son web token with the contents of user object and return it in the response
-                const token = jwt.sign({ id: user.id, email: user.email}, 'ILoveMoShop');
-                return res.json({user, token});
+                const token = jwt.sign({ id: user.id, email: user.email, name: user.name}, 'ILoveMoStore',{
+                    expiresIn: 3600
+                });
+                return res.json({token});
             });
         })(req, res);
     }

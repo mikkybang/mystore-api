@@ -12,12 +12,16 @@ router.get("/test", (req, res) => {
     res.send("it works test")
 });
 
+
 router.post('/register',
     userController.validateRegister,
     catchErrors(authController.register),
 );
 router.post('/login',
     authController.login)
+
+router.get('/:email', userController.getuserByEmail)
+
 
 router.get('/protect',  passport.authenticate('jwt', {session: false}), (req, res) => {
     res.send('i am here')

@@ -18,11 +18,6 @@ const storeSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
       },
-    //   author: {
-    //     type: mongoose.Schema.ObjectId,
-    //     ref: 'Seller',
-    //     required: 'You must supply a seller'
-    //   },
       products:[{
         type: mongoose.Schema.ObjectId,
         ref: 'Product'

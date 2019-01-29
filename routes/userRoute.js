@@ -20,7 +20,12 @@ router.post('/register',
 router.post('/login',
     authController.login)
 
-router.get('/:email', userController.getuserByEmail)
+router.get('/:email', 
+catchErrors(userController.getuserByEmail));
+router.put('/:email',
+    catchErrors(userController.updateUser));
+router.delete('/:email',
+catchErrors(userController.deleteUser));
 
 
 router.get('/protect',  passport.authenticate('jwt', {session: false}), (req, res) => {

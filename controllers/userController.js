@@ -16,6 +16,19 @@ exports.getuserByEmail = async (req, res) => {
     res.json(user);
 }
 
+exports.updateUser = async (req, res) => {
+    const user = await User.findOneAndUpdate({ email: req.params.email }, req.body, {
+        new: true,
+        runValidators: true
+    }).exec();
+     res.json(user);
+}
+
+exports.deleteUser = async (req, res) => {
+     await User.findOneAndRemove({email: req.params.email}).exec();
+     res.json({message: 'User sucessfully deleted'});
+}
+
 
 exports.validateRegister = (req, res, next) => {
     req.sanitizeBody('name');

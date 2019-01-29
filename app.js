@@ -9,6 +9,8 @@ const promisify = require('es6-promisify');
 const expressValidator = require('express-validator');
 const userRoutes = require('./routes/userRoute');
 const storeRoutes = require('./routes/storeRoute');
+const buyerRoutes = require('./routes/buyerRoutes');
+const sellerRoutes = require('./routes/sellerRoutes');
 const errorHandlers = require('./handlers/errorHandlers');
 
 //require passport
@@ -51,8 +53,10 @@ app.use(passport.initialize());
 
 // After allllll that above middleware, we finally handle our own routes!
 // app.use('/', routes);
-app.use('/', storeRoutes);
+app.use('/store', storeRoutes);
 app.use('/user', userRoutes);
+app.use('/buyer', buyerRoutes);
+app.use('/seller', sellerRoutes);
 
 
 // If that above routes didnt work, we 404 them and forward to error handler

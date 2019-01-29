@@ -26,3 +26,8 @@ exports.updateStore = async (req, res) => {
     }).exec();
      res.json(store);
 }
+
+exports.deleteStore = async (req, res) => {
+    await Store.findOneAndRemove({slug: req.params.slug})
+     res.json({message: 'Store deleted'});      
+}

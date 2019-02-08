@@ -16,6 +16,7 @@ router.get("/test", (req, res) => {
 router.post('/register',
     userController.validateRegister,
     catchErrors(authController.register),
+    catchErrors(authController.login)
 );
 router.post('/login',
     authController.login)

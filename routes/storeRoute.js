@@ -4,7 +4,7 @@ const storeController = require('../controllers/storeController');
 const { catchErrors } = require('../handlers/errorHandlers');
 
 
-router.post('/add',
+router.post('/create/:sellerid',
     catchErrors(storeController.createStore)
 );
 router.get('/:slug',

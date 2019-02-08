@@ -6,15 +6,13 @@ const sellerController = require('../controllers/sellerController');
 
 //seller
 
-router.route('/sellers')
+router.route('/')
     .get(sellerController.index)
-    .post(sellerController.new);
 
 
-router.route('/sellers/:seller_id')
-    .get(sellerController.view)
+router.route('/:email')
+    .get(sellerController.getSellerByEmail)
     .patch(sellerController.update)
-    .put(sellerController.update)
     .delete(sellerController.delete);
 
 

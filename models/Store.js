@@ -18,6 +18,10 @@ const storeSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
       },
+      seller: {
+          type: mongoose.Schema.ObjectId,
+          ref: 'Seller'
+        },
       products:[{
         type: mongoose.Schema.ObjectId,
         ref: 'Product'

@@ -1,4 +1,7 @@
-Seller = require('./sellerController');
+const mongoose = require('mongoose');
+const User = mongoose.model('User');
+const Seller = mongoose.model('Seller');
+const Buyer = mongoose.model('Buyer');
 
 // Handling index action for the seller
 
@@ -19,22 +22,11 @@ exports.index = (req, res) => {
   });  
 };
 
-// Handle create contact actions
 
-exports.new = (req,res) => {
-    var seller = new Seller();
-    seller.itemName = req.body.ItemName ? req.body.itemName : seller.itemName;
-    seller.itemPrice = req.body.itemPrice;
-    seller.itemDecription = req.body.itemDecription;
-
-    // save the seller and check for errors
-    seller.save((err) =>{
-        res.json({
-            message: 'New sellers created!',
-            data: seller
-        });
-    });
-};
+exports.getSellerByEmail = async (req, res) => {
+    const seller = await Seller.findOne({email: req.params.email}).populate('user store')
+     res.json(seller);
+}
 
 
 // Handle view contact info
@@ -52,36 +44,15 @@ exports.view = (req, res) => {
 
 // Handle update sellers info
 
-exports.update = (req, res) => {
-    seller.findById(req.params.seller_id, (err, seller) => {
-        if (err)
-            res.send(err);
-        seller.itemName = req.body.itemName ? req.body.itemName :seller.itemName;
-        seller.itemPrice = req.body.seller.itemPrice;
-        seller.itemDecription = req.body.seller.itemDecription;
-
-        // save the seller and check  for errors
-        seller.save(function (err){
-            if (err)
-                res.json(err);
-            res.json({
-                message: 'seller info updated',
-                data: seller
-            });
-        });
-    });
+exports.update = async (req, res) => {
+    const seller = await Seller.FindOneAndUpdate({email: req.params.email}, req.body)
 }
 
 
 // Handle delete seller
 
-exports.delete = (req, res) => {
-    seller.remove({_id: req.params.seller_id}, (err, seller) => {
-        if(err)
-            res.send(err);
-        res.json({
-            status: "success",
-            message: "seller deleted"
-        })
-    });
+exports.delete = async (req, res) => {
+    const pemail = req.params.email
+    await Seller.findOneandRemove({email: pemail}).exec()
+    await User.findOneAndRemove({email: pemail}).exec()
 }

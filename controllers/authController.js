@@ -15,23 +15,13 @@ exports.register = async (req, res, next) => {
                 const buyer = await new Buyer({ user: user._id, email: user.email, name: user.name })
                 buyer.save();
                 console.log(user)
-                passport.authenticate(
-                    'local', {
-                        session: false
-                    })(req, res, () => {
-                        res.status(200).send(user);
-                    });
+                next()
             }
             else {
                 const seller = await new Seller({ user: user._id, email: user.email, name: user.name })
                 seller.save();
                 console.log(user)
-                passport.authenticate(
-                    'local', {
-                        session: false
-                    })(req, res, () => {
-                        res.status(200).send(user);
-                    });
+                next()
             }
 
         }

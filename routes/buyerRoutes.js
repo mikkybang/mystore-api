@@ -4,12 +4,12 @@ const buyerController = require('../controllers/buyerController');
 
 //Buyer routes
 
-router.route('/buyers')
+router.route('/')
     .get(buyerController.index)
     .post(buyerController.new);
 
 
-router.route('/buyers/:email')
+router.route('/:email')
     .get(buyerController.getbuyerbyEmail)
     .patch(buyerController.update)
     .put(buyerController.update)
